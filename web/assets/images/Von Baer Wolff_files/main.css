@@ -1,0 +1,91 @@
+body {
+  margin: 0px; }
+
+.no-gutter > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0; }
+
+.col-centered {
+  float: none;
+  margin: 0 auto; }
+
+/*
+!! LAYOUT
+*/
+.layoutNav {
+  float: right; }
+  .layoutNav li {
+    display: inline;
+    text-transform: uppercase; }
+    .layoutNav li a {
+      text-decoration: none;
+      color: black; }
+
+/* Header */
+header {
+  background: silver;
+  height: 35px;
+  padding-top: 10px; }
+  header img {
+    float: left;
+    height: 20px;
+    width: 50px; }
+
+/* Footer */
+footer {
+  height: 70px;
+  background: gray;
+  padding-top: 20px; }
+  footer img {
+    float: left;
+    height: 20px;
+    width: 50px; }
+  footer p {
+    float: right;
+    text-transform: uppercase; }
+
+/*
+!! HOME PAGE
+*/
+.home-hero {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center; }
+  .home-hero .hero-button {
+    text-transform: uppercase; }
+
+.what-we-do {
+  background: silver;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  text-align: center; }
+  .what-we-do .wwd-headline {
+    text-transform: uppercase; }
+  .what-we-do .process-block img {
+    width: 100px; }
+
+.benefits {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+  .benefits img {
+    width: 400px; }
+
+/*
+!! Company Overview
+*/
+.company-overview img {
+  width: 450px; }
+
+.supporting-copy {
+  background: silver;
+  padding-top: 30px;
+  padding-bottom: 30px; }
+  .supporting-copy .supcop1 {
+    background: white; }
+  .supporting-copy .supcop2 {
+    background: white; }
+  .supporting-copy .team-lead-in {
+    margin-top: 25px;
+    background: white; }
+
+/*# sourceMappingURL=main.css.map */

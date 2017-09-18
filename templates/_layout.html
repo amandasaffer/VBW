@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	<meta charset="utf-8" />
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+
+	{% include "stylesheets.html" %}
+
+</head>
+
+<body>
+
+	<header class='container-fluid'>
+
+		<a href='{{ siteUrl }}'>
+			<img src='#' />
+		</a>
+
+		<div class='layoutNav'>
+			<ul>
+				<li><a href='{{ url('companyOverview') }}'>Company-Overview</a></li>
+				<li><a href='{{ url('about') }}'>Company-About Us</a></li>
+				<li><a href='{{ url('technologyOverview') }}'>Technology</a></li>
+				<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
+				<li><a href='{{ url('resourcesPublications') }}'>Resources-Publications</a></li>
+				<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
+				<li><a href='{{ url('contact') }}'>Contact</a></li>
+			</ul>
+		</div>
+
+	</header>
+
+	<main>
+		{% block content %}
+		{% endblock %}
+	</main>
+
+	<footer class='container-fluid'>
+			<a href='{{ siteUrl }}'>
+				<img src='#' />
+			</a>
+
+			<div class='layoutNav'>
+			<ul>
+				<li><a href='{{ url('companyOverview') }}'>Company-Overview</a></li>
+				<li><a href='{{ url('about') }}'>Company-About Us</a></li>
+				<li><a href='{{ url('technologyOverview') }}'>Technology</a></li>
+				<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
+				<li><a href='{{ url('resourcesPublications') }}'>Resources-Publications</a></li>
+				<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
+				<li><a href='{{ url('contact') }}'>Contact</a></li>
+			</ul>
+			</div>
+		</div>
+		<div class='container-fluid'>
+			<p>&copy; Copyright {{ now | date('Y') }} Von Baer Wolff. All Rights Reserved.</p>
+		</div>
+	</footer>
+
+
+</body>
+</html>

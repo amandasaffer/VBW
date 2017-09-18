@@ -1,0 +1,26 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% set entry = craft.entries.section('resourcesPublications').one() %}
+<div class='resources-header'>
+	<p>{{ entry.headerHeadline }}</p>
+	<p>{{ entry.headerSubheadline }}</p>
+</div>
+<div class='pub-list container'>
+	<p>Click on a paper's title to view the abstract and/or download a PDF of the full paper.</p>
+	<div class='row'>
+		{% for block in entry.papers.all() %}
+			<div class='paper-block col-md-6'>
+				<p>{{ block.paperTitle }}</p>
+				<p>{{ block.paperPubDate}}</p>
+				<p>{{ block.paperTitle}}</p>
+				<p>{{ block.paperAbstract}}</p>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+
+
+
+{% endblock %}

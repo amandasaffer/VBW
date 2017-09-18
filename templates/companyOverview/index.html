@@ -1,0 +1,41 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+{% set entry = craft.entries.section('companyOverview').one() %}
+<div class='company-overview container'>
+	<div class='row'>
+		<div class='col-md-6'>
+			<p>{{ entry.heroHeadline }}</p>
+			<p>{{ entry.heroSubheadline}}</p>
+			<p>{{ entry.heroBody }}</p>
+		</div>
+		<div class='col-md-6'>
+			<img src='{{ entry.heroImage.one().url }}' />
+		</div>
+	</div>
+</div>
+
+<div class='supporting-copy'>
+	<div class='container'>
+		<div class='row'>
+			<div class='supcop1 col-md-6'>
+				<p>{{ entry.supportingCopy.nth(0).supcopHeadline }}</p>
+				<p>{{ entry.supportingCopy.nth(0).supcopSubheadline }}</p>
+				<p>{{ entry.supportingCopy.nth(0).supcopBody }}</p>
+			</div>
+			<div class='col-md-6'>
+				<div class='supcop2 col-md-12'>
+					<p>{{ entry.supportingCopy.nth(1).supcopHeadline }}</p>
+					<p>{{ entry.supportingCopy.nth(1).supcopSubheadline }}</p>
+					<p>{{ entry.supportingCopy.nth(1).supcopBody }}</p>
+				</div>
+				<div class='team-lead-in col-md-12'>
+					<p>{{ entry.tliHeadline }} <a href=''>{{ entry.tliLinkText }}</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

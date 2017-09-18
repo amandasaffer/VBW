@@ -1,0 +1,85 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% set entry = craft.entries.section('contact').one() %}
+
+<div class='contact-header container'>
+	<div class='row'>
+		<p>{{ entry.headerHeadline }}</p>
+		<p>{{ entry.headerSubheadline }}</p>
+	</div>
+</div>
+<div class='container'>
+	<div class='row'>
+		<div class='col-md-6'>
+			<div class='row'>
+				<p>Von Baer Wolff is creating a hepatocyte supply pipeline for science and industry. Reach out if you're interested in obtaining hepatocytes, curious about ways we might partner, or want to learn about investment opportunities.</p>
+			</div>
+			<div class='row'>
+				<div class='col-md-6'>
+					<form>
+						First Name
+						<input type='text'>
+					</form>
+				</div>
+				<div class='col-md-6'>
+					<form>
+						Last Name
+						<input type='text'>
+					</form>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='col-md-6'>
+					<form>
+						Email Address
+						<input type='text'>
+					</form>
+				</div>
+				<div class='col-md-6'>
+					<form>
+						Organization
+						<input type='text'>
+					</form>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='col-md-12'>
+					<form>
+						Your Message<br>
+						<textarea></textarea>
+					</form>
+				</div>
+			</div>
+			<div class='row'>
+				<div class='col-md-12'>
+					<button>Send Message</button>
+					<p>Required Field</p>
+				</div>
+			</div>
+		</div>
+		<div class='col-md-6 map-frame'>
+			<img />
+			<p>Locations</p>
+			<div class='row'>
+				{% for block in entry.locations.all() %}
+					<div class='col-md-6'>
+						<p>{{ block.locationTitle }}</p>
+						<p>{{ block.locationAddress }}</p>
+						<a href='{{ block.locationDirectionsLink }}'>Get Directions</a>
+					</div>
+				{% endfor %}
+			</div>
+			<div class='contact-person'>
+				<p>Contact Person</p>
+				<p>{{ entry.contactName }}</p>
+				<p>{{ entry.contactEmail }}</p>
+				<p>{{ entry.contactTelephone }}</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

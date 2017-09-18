@@ -1,0 +1,40 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% set entry = craft.entries.section('news').one() %}
+{% set newsEntries = craft.entries.section('news').type('news').all() %}
+{% set eventEntries = craft.entries.section('news').type('event').all() %}
+
+<div class='news-header container'>
+	<p>Latest</p>
+	<p>News and Events</p>
+</div>
+<div class='container news-and-events'>
+	<div class='row'>
+		<div class='col-md-6'>
+			{% for block in newsEntries %}
+				<div class='news-block'>
+					<p>{{ block.newsPublishDate|datetime('short') }}</p>
+					<p>{{ block.title }}</p>
+					<p>{{ block.newsBody }}</p>
+				</div>
+			{% endfor %}
+		</div>
+		<div class='event-list col-md-6'>
+			<p>Upcoming Events</p>
+			{% for block in eventEntries %}
+				<div class='event-block'>
+					<p>Matrix Block Date(s)</p>
+					<p>{{ block.title }}</p>
+					<p>{{ block.eventLocation }}</p>
+					<p>{{ block.eventDescription }}</p>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+	<button class='col-centered'>Next</button>
+</div>
+{% endblock %}
+
+
+

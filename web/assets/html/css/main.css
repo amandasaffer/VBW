@@ -1,0 +1,211 @@
+body {
+  margin: 0px; }
+
+.no-gutter > [class*='col-'] {
+  padding-right: 0;
+  padding-left: 0; }
+
+.col-centered {
+  float: none;
+  margin: 0 auto; }
+
+/*
+!! LAYOUT
+*/
+.layoutNav {
+  float: right; }
+  .layoutNav li {
+    display: inline;
+    text-transform: uppercase; }
+    .layoutNav li a {
+      text-decoration: none;
+      color: black; }
+
+/* Header */
+header {
+  background: silver;
+  height: 35px;
+  padding-top: 10px; }
+  header img {
+    float: left;
+    height: 20px;
+    width: 50px; }
+
+/* Footer */
+footer {
+  height: 70px;
+  background: gray;
+  padding-top: 20px; }
+  footer img {
+    float: left;
+    height: 20px;
+    width: 50px; }
+  footer p {
+    float: right;
+    text-transform: uppercase; }
+
+/*
+!! HOME PAGE
+*/
+.home-hero {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  text-align: center; }
+  .home-hero .hero-button {
+    text-transform: uppercase; }
+
+.what-we-do {
+  background: silver;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  text-align: center; }
+  .what-we-do .wwd-headline {
+    text-transform: uppercase; }
+  .what-we-do .process-block img {
+    width: 100px; }
+
+.benefits {
+  padding-top: 50px;
+  padding-bottom: 50px; }
+  .benefits img {
+    width: 400px; }
+
+/*
+!! Company Overview
+*/
+.company-overview img {
+  width: 450px; }
+
+.supporting-copy {
+  background: silver;
+  padding-top: 30px;
+  padding-bottom: 30px; }
+  .supporting-copy .supcop1 {
+    background: white; }
+  .supporting-copy .supcop2 {
+    background: white; }
+  .supporting-copy .team-lead-in {
+    margin-top: 25px;
+    background: white; }
+
+/*
+!! Company - ABOUT US
+*/
+.about-header {
+  background: gray;
+  padding-top: 75px;
+  padding-bottom: 75px;
+  text-align: center; }
+
+.personnel-wheel {
+  background: silver; }
+
+.personnel-block {
+  padding-top: 20px;
+  padding-bottom: 30px; }
+  .personnel-block img {
+    width: 100px; }
+
+/*
+!!  Technology Overview
+*/
+.tech-overview-header {
+  background: gray;
+  padding-top: 75px;
+  padding-bottom: 75px;
+  text-align: center; }
+
+.tech-overview {
+  padding-top: 20px;
+  padding-bottom: 20px; }
+
+.image-slider {
+  padding-top: 30px;
+  padding-bottom: 30px; }
+  .image-slider .image-rotation img {
+    width: 500px;
+    padding-right: 30px; }
+  .image-slider .image-slider-control img {
+    width: 30px;
+    height: 30px; }
+
+.how-it-works img {
+  width: 500px; }
+
+.supporting-points {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center; }
+  .supporting-points img {
+    width: 50px; }
+
+/*
+!! Collaborations
+*/
+.collaborations-header {
+  background: gray;
+  padding-top: 75px;
+  padding-bottom: 75px;
+  text-align: center; }
+
+.collab-list {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center; }
+  .collab-list .collab-chunk {
+    padding: 20px;
+    margin-top: 30px;
+    background: gray; }
+    .collab-list .collab-chunk img {
+      width: 200px; }
+
+/*
+!! Resources - Publications
+*/
+.resources-header {
+  background: gray;
+  padding-top: 75px;
+  padding-bottom: 75px;
+  text-align: center; }
+
+.pub-list {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center; }
+  .pub-list .paper-block {
+    background: silver;
+    text-align: left;
+    border: 1px solid black; }
+
+/*
+!! NEWS and EVENTS
+*/
+.news-header {
+  padding-top: 60px;
+  padding-bottom: 60px; }
+
+.news-and-events {
+  text-align: center;
+  padding-bottom: 20px; }
+  .news-and-events .news-block {
+    text-align: left;
+    background: gray;
+    margin-bottom: 20px; }
+  .news-and-events .event-list {
+    background: silver; }
+
+/*
+!! Contact
+*/
+.contact-header {
+  padding-top: 75px;
+  padding-bottom: 75px; }
+
+.map-frame img {
+  width: 425px;
+  height: 250px; }
+
+.contact-person {
+  padding-top: 20px; }
+
+/*# sourceMappingURL=main.css.map */

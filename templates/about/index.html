@@ -1,0 +1,39 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+{% set entry = craft.entries.section('about').one() %}
+
+<div class='about-header'>
+	<p>{{ entry.headerHeadline }}</p>
+	<p>{{ entry.headerSubheadline }}</p>
+</div>
+<div class='personnel-wheel'>
+	<div class='container'>
+		<div class='row'>
+			<div class="col-md-3"><p>01 Management</p></div>
+			<div class="col-md-3"><p>02 Board of Directors</p></div>
+			<div class="col-md-3"><p>03 Science Advisors</p></div>
+			<div class="col-md-3"><p>04 Business Development</p></div>
+		</div>
+	</div>
+</div>
+<div class='container'>
+	<p align='center'>Business Development</p>
+	{% for block in entry.management.all() %}
+		<div class='row personnel-block'>
+			<div class='col-centered col-md-6'>
+				<div class='col-md-4'>
+					<img src='{{ block.mgmtImage.one().url }}' />
+				</div>
+				<div class='col-md-8'
+					<p>{{ block.mgmtName }}</p>
+					<p>{{ block.mgmtTitleOrg }}</p>
+					<p>{{ block.mgmtBio }}</p>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+{% endblock %}

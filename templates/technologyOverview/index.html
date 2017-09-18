@@ -1,0 +1,72 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% set entry = craft.entries.section('technologyOverview').one() %}
+<div class='tech-overview-header'>
+	<p>{{ entry.headerHeadline }}</p>
+	<p>{{ entry.headerSubheadline }}</p>
+</div>
+<div class='tech-overview container'>
+	<div class='row'>
+		<div class='col-md-12'>
+			<p>{{ entry.overviewTitle }}</p>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-6'>
+			<p>{{ entry.overviewBodyColumn1 }}</p>
+		</div>
+		<div class='col-md-6'>
+			<p>{{ entry.overviewBodyColumn2 }}</p>
+		</div>
+	</div>
+</div>
+<div class='image-slider container'>
+	<div class='image-rotation row'>
+		{% for block in entry.sliderPhotos.all() %}
+				<div class='image-slider-block col-md-6'>
+					<img src='{{ block.sliderPhoto.one().url }}' />
+				</div>
+		{% endfor %}
+	</div>
+	<div clas='image-slider-control row'>
+		<div class='col-md-1'>
+			<img src='#' />
+			<img src='#' />
+		</div>
+		<div class='col-md-11'>
+			<p>{{ entry.sliderTitle }}</p>
+			<p>Block Slider Caption Goes Here</p>
+		</div>
+	</div>
+</div>
+<div class='container how-it-works'>
+	<div class='row'>
+		<div class='col-md-12'>
+			<p>{{ entry.hiwTitle }}</p>
+		</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-6'>
+			<p>{{ entry.hiwBody }}</p>
+		</div>
+		<div class='col-md-6'>
+			<img src='{{ entry.hiwGraphic.one().url }}' />
+		</div>
+	</div>
+</div>
+<div class='supporting-points container'>
+	<p>{{ entry.spointTitle }}</p>
+	<div class='row'>
+		{% for block in entry.spoints.all() %}
+			<div class='col-md-3'>
+				<img src='{{ block.spointsBlockIcon.one().url }}' />
+				<p>{{ block.spointsBlockTitle }}</p>
+				<p>{{ block.spointsBlockDescription }}</p>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+{% endblock %}
+
+

@@ -1,0 +1,23 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% set entry = craft.entries.section('collaborations').one() %}
+<div class='collaborations-header'>
+	<p>{{ entry.headerHeadline }}</p>
+	<p>{{ entry.headerSubheadline }}</p>
+</div>
+<div class='container collab-list'>
+	{% for block in entry.collaborations.all() %}
+		<div class='row'>
+			<div class='col-md-6 col-centered collab-chunk'>
+				<img src='{{ block.collabCompanyLogo.one().url }}'>
+				<p>{{ block.collabBody }}</p>
+				<button>{{ block.collabButtonText }}</button>
+			</div>
+		</div>
+	{% endfor %}
+</div>
+
+
+
+{% endblock %}

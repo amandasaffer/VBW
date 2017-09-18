@@ -1,0 +1,43 @@
+{% extends "_layout" %}
+
+{% block content %}
+
+<div class='home-hero'>
+	<h1>{{ entry.heroHeadline }}</h1>
+	<button class = 'hero-button'type='button'>{{ entry.heroButtonText }}</button>
+</div>
+
+<div class='what-we-do'>
+	<div class='container'>
+		<div clas='row'>
+			<p class='wwd-headline'>{{ entry.wwdHeadline }}</p>
+		</div>
+		<div class='row'>
+			{% for block in entry.wwdProcess.all() %}
+				<div class='process-block col-md-4'>
+					<img src='{{ block.wwdProcessImage.one().url }}' />
+					<p>{{ block.wwdProcessDescription }}</p>
+				</div>
+			{% endfor %}
+			<p>{{ entry.wwdBodyCopy }}</p>
+		</div>
+	</div>
+</div>
+
+<div class='benefits'>
+	<div class='container'>
+		<div class='row'>
+			<div class='col-md-6'>
+				<p>{{ entry.benefitPrimaryHeadline }}</p>
+				<p>{{ entry.benefitSubheadline }}</p>
+				<p>{{ entry.benefitBodyText }}</p>
+				<button>{{ entry.benefitButtonText }}</button>
+			</div>
+			<div class='col-md-6'>
+				<img src='{{ entry.benefitImage.one().url }}' />
+			</div>
+		</div>
+	</div> 
+</div>
+
+{% endblock %}
