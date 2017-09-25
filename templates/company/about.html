@@ -1,0 +1,116 @@
+{% extends "_layout" %}
+
+{% set entry = craft.entries.section('companyAbout').one() %}
+{% set title = entry.title %}
+
+{% block content %}
+<div class="page-title --about" style="background-image: url('{{ entry.headerBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
+    <div class="container">
+        <div class="col-md-11 col-lg-8 col-centered">
+            <h2 class="subheadline">{{ entry.title }}</h2>
+            <h1 class="headline">{{ entry.headerSubheadline|striptags|raw }}</h1>
+        </div>
+    </div>
+</div>
+
+{% set thumb = {
+    mode: 'crop',
+    width: 300,
+    height: 300,
+    quality: 100,
+    position: 'center-center'
+} %}
+
+<div id="personnel">
+    <div class="team-selector">
+        <div class="container">
+            <div class="menu">
+                <div class="select-block">
+                    <a href="javascript:void(0)" onclick="viewTeam(this, 'management')" class="select-trigger active">
+                        <span class="num">01</span> Management
+                    </a>
+                </div>
+                <div class="select-block">
+                    <a href="javascript:void(0)" onclick="viewTeam(this, 'scienceTeam')" class="select-trigger">
+                        <span class="num">02</span> Science Team
+                    </a>
+                </div>
+                <div class="select-block">
+                    <a href="javascript:void(0)" onclick="viewTeam(this, 'board')" class="select-trigger">
+                        <span class="num">03</span> Board of Directors
+                    </a>
+                </div>
+                <div class="select-block">
+                    <a href="javascript:void(0)" onclick="viewTeam(this, 'scienceAdvisors')" class="select-trigger">
+                        <span class="num">04</span> Science Advisors
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="management" class="container team-container active">
+        <h3 class="team-section">Management</h3>
+        {% for person in entry.management.all() %}
+            <div class="row team-member">
+                <div class="sm-photo-centered col-md-3 push-md-1 col-lg-2 push-lg-2">
+                    <img src="{{ person.image.one().getUrl(thumb) }}" class="team" />
+                </div>
+                <div class="col-md-7 push-md-1 col-lg-6 push-lg-2">
+                    <h4 class="name">{{ person.fullName }}</h4>
+                    <h5 class="title">{{ person.titleOrg|striptags|raw }}</h5>
+                    <div class="bio">{{ person.bio }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="scienceTeam" class="container team-container">
+        <h3 class="team-section">Science Team</h3>
+        {% for person in entry.scienceTeam.all() %}
+            <div class="row team-member">
+                <div class="sm-photo-centered col-md-3 push-md-1 col-lg-2 push-lg-2">
+                    <img src="{{ person.image.one().getUrl(thumb) }}" class="team" />
+                </div>
+                <div class="col-md-7 push-md-1 col-lg-6 push-lg-2">
+                    <h4 class="name">{{ person.fullName }}</h4>
+                    <h5 class="title">{{ person.titleOrg|striptags|raw }}</h5>
+                    <div class="bio">{{ person.bio }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="board" class="container team-container">
+        <h3 class="team-section">Board of Directors</h3>
+        {% for person in entry.boardOfDirectors.all() %}
+            <div class="row team-member">
+                <div class="sm-photo-centered col-md-3 push-md-1 col-lg-2 push-lg-2">
+                    <img src="{{ person.image.one().getUrl(thumb) }}" class="team" />
+                </div>
+                <div class="col-md-7 push-md-1 col-lg-6 push-lg-2">
+                    <h4 class="name">{{ person.fullName }}</h4>
+                    <h5 class="title">{{ person.titleOrg|striptags|raw }}</h5>
+                    <div class="bio">{{ person.bio }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div id="scienceAdvisors" class="container team-container">
+        <h3 class="team-section">Science Advisors</h3>
+        {% for person in entry.scienceAdvisors.all() %}
+            <div class="row team-member">
+                <div class="col-md-3 push-md-1 col-lg-2 push-lg-2">
+                    <img src="{{ person.image.one().getUrl(thumb) }}" class="team" />
+                </div>
+                <div class="col-md-7 push-md-1 col-lg-6 push-lg-2">
+                    <h4 class="name">{{ person.fullName }}</h4>
+                    <h5 class="title">{{ person.titleOrg|striptags|raw }}</h5>
+                    <div class="bio">{{ person.bio }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

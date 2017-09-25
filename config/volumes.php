@@ -4,7 +4,7 @@
 // Note: You also do this in config/general.php, but it's built in.
 
 if(getenv('CRAFT_ENVIRONMENT') == 'dev') {
-    $basePath = '/Users/dustincooper/Sites/VBW/web';
+    $basePath = '/Users/amanda/Sites/vbw-craft/web';
     $baseURL = 'http://dev.vonbaerwolf.com';
 } else if (getenv('CRAFT_ENVIRONMENT') == 'staging') {
     $basePath = '';
@@ -20,7 +20,11 @@ return [
         'url' => $baseURL . '/assets/images',
     ],
     'pdfs' => [
-        'path' => $basePath . '/assets/images/pdfs',
-        'url' => $baseURL . '/assets/images/pdfs',
+        'path' => $basePath . '/assets/pdfs',
+        'url' => $baseURL . '/assets/pdfs',
+    ],
+    'people' => [
+        'path' => $basePath . '/assets/images/people',
+        'url' => $baseURL . '/assets/images/people',
     ],
 ];

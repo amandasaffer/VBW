@@ -1,0 +1,105 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% set entry = craft.entries.section('technology').one() %}
+<div class="page-title --technology" style="background-image: url('{{ entry.headerBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
+    <div class="container">
+        <div class="col-md-12 col-lg-8 col-centered">
+            <h2 class="subheadline">{{ entry.headerHeadline }}</h2>
+            <h1 class="headline">{{ entry.headerSubheadline|striptags|raw }}</h1>
+        </div>
+    </div>
+</div>
+
+<div id="techOverview">
+	<div class="container">
+		<h2 class="section-header --left">{{ entry.overviewTitle }}</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="body-col col1">
+					{{ entry.overviewBodyColumn1 }}
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="body-col col1">
+					{{ entry.overviewBodyColumn2 }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="comparison">
+	<div class="container-fluid">
+		<div class="small-captions hidden-md-up">
+			{% for block in entry.comparePhotos.all() %}
+				<p class="sm-caption">
+					<span class="title">{{ block.compareTitle|striptags }} {% if loop.first %}(Fig. 1){% else %}(Fig. 2){% endif %}:</span> {{ block.compareCutline|striptags('<em>')|raw }}
+				</p>
+			{% endfor %}
+		</div>
+
+		<div class="row">
+			{% for block in entry.comparePhotos.all() %}
+				<div class="image-slider-block col-md-6" style="background-image: url('{{ block.photo.one().url }}'); background-size: cover; background-position: 50% 50%;">
+					{% if loop.first %}
+						<span class="fig hidden-md-up">Fig. 1</span>
+					{% else %}
+						<span class="fig hidden-md-up">Fig. 2</span>
+					{% endif %}
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="captions hidden-sm-down">
+			<div class="vs"><span>VS</span></div>
+			<div class="row">
+				{% for block in entry.comparePhotos.all() %}
+					<div class="col-md-6">
+						<div class="caption">
+							<h6>{{ block.compareTitle }}</h6>
+							{{ block.compareCutline }}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container how-it-works">
+	<h2 class="section-header --left">{{ entry.hiwTitle }}</h2>
+	<div class="row">
+		<div class="col-md-12 col-lg-6">
+			<div class="body">
+				{{ entry.hiwBody }}
+			</div>
+		</div>
+		<div class="col-md-12">
+			<img src="{{ entry.hiwGraphic.one().url }}" />
+		</div>
+	</div>
+</div>
+
+<div id="supporting" style="background-image: url('{{ entry.spointBG.one().url }}'); background-size: cover; background-position: 50% 50%;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-centered">
+				<h3>{{ entry.spointTitle|striptags|raw }}</h3>
+			</div>
+		</div>
+		<div class="row">
+			{% for block in entry.spoints.all() %}
+				<div class="col-xs-12 col-md-3 supporting-point">
+					<img src="{{ block.spointsBlockIcon.one().url }}" />
+					<h6>{{ block.spointsBlockTitle|striptags|raw }}</h6>
+					{{ block.spointsBlockDescription|striptags('<p>')|raw }}
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% set title = entry.title %}
+

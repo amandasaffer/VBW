@@ -1,0 +1,45 @@
+{% extends "_layout" %}
+
+{% set entry = craft.entries.section('companyOverview').one() %}
+{% set title = entry.title %}
+{% set dark = true %}
+
+{% block content %}
+
+<div id="companyIntro" style="background-image:url('{{ entry.heroImage.one().url }}'); background-position: 99% 115%; background-size: 43%; background-repeat: no-repeat;">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 body">
+				<h3 class="subsection --underline">{{ entry.heroHeadline|striptags }}</h3>
+				<h2 class="primary">{{ entry.heroSubheadline|striptags }}</h2>
+				<p>{{ entry.heroBody }}</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="company">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col1">
+				<div class="box">
+					<h3 class="subsection">{{ entry.supportingCopy.nth(0).supcopSubheadline|striptags }}</h3>
+					<h2 class="primary">{{ entry.supportingCopy.nth(0).supcopHeadline|striptags }}</h2>
+					{{ entry.supportingCopy.nth(0).supcopBody }}
+				</div>
+			</div>
+			<div class="col-md-6 col2">
+				<div class="box">
+					<h3 class="subsection">{{ entry.supportingCopy.nth(1).supcopSubheadline|striptags }}</h3>
+					<h2 class="primary">{{ entry.supportingCopy.nth(1).supcopHeadline|striptags }}</h2>
+					{{ entry.supportingCopy.nth(1).supcopBody }}
+				</div>
+				<div class="box --dark">
+					<p>{{ entry.tliHeadline|striptags }} <a href="{{ url('company/about') }}">{{ entry.tliLinkText|striptags }}</a></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

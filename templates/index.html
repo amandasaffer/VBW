@@ -2,42 +2,70 @@
 
 {% block content %}
 
-<div class='home-hero'>
-	<h1>{{ entry.heroHeadline }}</h1>
-	<button class = 'hero-button'type='button'>{{ entry.heroButtonText }}</button>
-</div>
-
-<div class='what-we-do'>
-	<div class='container'>
-		<div clas='row'>
-			<p class='wwd-headline'>{{ entry.wwdHeadline }}</p>
-		</div>
-		<div class='row'>
-			{% for block in entry.wwdProcess.all() %}
-				<div class='process-block col-md-4'>
-					<img src='{{ block.wwdProcessImage.one().url }}' />
-					<p>{{ block.wwdProcessDescription }}</p>
-				</div>
-			{% endfor %}
-			<p>{{ entry.wwdBodyCopy }}</p>
+<div id="hero" class="home --centered" style="background-image: url('{{ entry.heroBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 100%;">
+	<div class="container">
+		<div class="col-md-12 col-lg-8 col-centered">
+			<h1>{{ entry.heroHeadline|striptags|raw }}</h1>
+			<a href="{{ url('company/overview') }}" class="btn btn-primary btn-cta">{{ entry.heroButtonText }}</a>
 		</div>
 	</div>
 </div>
 
-<div class='benefits'>
-	<div class='container'>
-		<div class='row'>
-			<div class='col-md-6'>
-				<p>{{ entry.benefitPrimaryHeadline }}</p>
-				<p>{{ entry.benefitSubheadline }}</p>
-				<p>{{ entry.benefitBodyText }}</p>
-				<button>{{ entry.benefitButtonText }}</button>
-			</div>
-			<div class='col-md-6'>
-				<img src='{{ entry.benefitImage.one().url }}' />
+<div class="arrow">
+	<svg width="19px" height="104px" viewBox="0 0 19 104" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	    <defs></defs>
+	    <g id="Full-Design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square" opacity="0.246037138" stroke-linejoin="round">
+	        <g id="Home-Page" transform="translate(-709.000000, -563.000000)" stroke-width="2">
+	            <g id="Group-7" transform="translate(711.000000, 564.000000)">
+	                <polyline id="Line-Copy" stroke="#A1A1A1" opacity="0.974184783" points="7.56643174 0 7.56643174 101 0 90.232517"></polyline>
+	                <path d="M15.5664317,101 L8,90.232517" id="Line-Copy-4" stroke="#A4A4A4" transform="translate(11.783216, 95.616258) scale(-1, 1) translate(-11.783216, -95.616258) "></path>
+	            </g>
+	        </g>
+	    </g>
+	</svg>
+</div>
+
+<div class="what-we-do">
+	<div class="container">
+		<div clas="row">
+			<h2 class="section-header">{{ entry.wwdHeadline }}</h2>
+		</div>
+		<div class="row">
+			{% for block in entry.wwdProcess.all() %}
+				<div class="step {% if loop.first %}step-1{% elseif loop.last %}step-3{% else %}step-2{% endif %} col-md-4">
+					<img src="{{ block.wwdProcessImage.one().url }}" />
+					<h3 class="desc">{{ block.wwdProcessDescription|striptags('<strong><em>')|raw }}</h3>
+				</div>
+			{% endfor %}
+		</div>
+
+		<div class="row">
+			<div class="col-md-8 col-lg-8 col-centered">
+				<div class="body">
+					{{ entry.wwdBodyCopy }}
+				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
+</div>
+
+<div id="benefits">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h3 class="subsection">{{ entry.benefitPrimaryHeadline }}</h3>
+				<h2 class="primary">{{ entry.benefitSubheadline|striptags|raw }}</h2>
+				<p>{{ entry.benefitBodyText }}</p>
+
+				<img src="{{ entry.benefitImage.one().url }}" class="hidden-md-up" style="margin-top: 1rem; margin-bottom: 2rem;" />
+
+				<a href="{{ url('technology/overview') }}" class="btn btn-secondary">{{ entry.benefitButtonText }}</a>
+			</div>
+			<div class="col-md-6 steps hidden-sm-down">
+				<img src="{{ entry.benefitImage.one().url }}" />
+			</div>
+		</div>
+	</div>
 </div>
 
 {% endblock %}

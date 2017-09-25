@@ -1,63 +1,126 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
-<head>
-	<meta charset="utf-8" />
-	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
-	<link rel="home" href="{{ siteUrl }}" />
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+		<link rel="home" href="{{ siteUrl }}" />
 
-	{% include "stylesheets.html" %}
+		{% include "stylesheets.html" %}
 
-</head>
+		<script src="https://use.typekit.net/mqp2cms.js"></script>
+		<script>try{Typekit.load({ async: true });}catch(e){}</script>
 
-<body>
+		<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
-	<header class='container-fluid'>
+		<script>
+			function viewTeam(el, team) {
+				$('.select-trigger').removeClass('active');
+				$(el).addClass('active');
+				$('.team-container.active').fadeOut(function() {
+					$(this).removeClass('active');
+					$('#'+team).fadeIn(function() {
+						$(this).addClass('active');
+					});
+				});
+			}
+		</script>
+	</head>
 
-		<a href='{{ siteUrl }}'>
-			<img src='#' />
-		</a>
+	<body>
+		<header class="{% if dark is defined %}--light{% endif %}">
 
-		<div class='layoutNav'>
-			<ul>
-				<li><a href='{{ url('companyOverview') }}'>Company-Overview</a></li>
-				<li><a href='{{ url('about') }}'>Company-About Us</a></li>
-				<li><a href='{{ url('technologyOverview') }}'>Technology</a></li>
-				<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
-				<li><a href='{{ url('resourcesPublications') }}'>Resources-Publications</a></li>
-				<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
-				<li><a href='{{ url('contact') }}'>Contact</a></li>
-			</ul>
-		</div>
-
-	</header>
-
-	<main>
-		{% block content %}
-		{% endblock %}
-	</main>
-
-	<footer class='container-fluid'>
 			<a href='{{ siteUrl }}'>
-				<img src='#' />
+				{% if dark is defined %}
+					<img src='{{ company.lightLogo.one().url }}' />
+				{% else %}
+					<img src='{{ company.logo.one().url }}' />
+				{% endif %}
 			</a>
 
-			<div class='layoutNav'>
-			<ul>
-				<li><a href='{{ url('companyOverview') }}'>Company-Overview</a></li>
-				<li><a href='{{ url('about') }}'>Company-About Us</a></li>
-				<li><a href='{{ url('technologyOverview') }}'>Technology</a></li>
-				<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
-				<li><a href='{{ url('resourcesPublications') }}'>Resources-Publications</a></li>
-				<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
-				<li><a href='{{ url('contact') }}'>Contact</a></li>
-			</ul>
+			<nav>
+				<ul>
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#" id="companyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    Company
+						</a>
+
+					  	<div class="dropdown-menu" aria-labelledby="companyDropdown">
+					    	<a class="dropdown-item" href='{{ url('company/overview') }}'>Overview</a>
+					    	<a class="dropdown-item" href='{{ url('company/about') }}'>About Us</a>
+					  	</div>
+					</li>
+					<!-- <li class="dropdown">
+						<a class="dropdown-toggle" href="#" id="companyDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    Technology
+						</a>
+
+					  	<div class="dropdown-menu" aria-labelledby="companyDropdown">
+					    	<a class="dropdown-item" href='{{ url('company/overview') }}'>Overview</a>
+					  	</div>
+					</li> -->
+					<li><a href='{{ url('technology/overview') }}'>Technology</a></li>
+					<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
+					<li class="dropdown">
+						<a class="dropdown-toggle" href="#" id="resourcesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    Resources
+						</a>
+
+					  	<div class="dropdown-menu" aria-labelledby="resourcesDropdown">
+					    	<a class="dropdown-item" href='{{ url('resources/publications') }}'>Publications</a>
+					  	</div>
+					</li>
+					<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
+					<li><a href='{{ url('contact') }}'>Contact</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			{% block content %}
+			{% endblock %}
+		</main>
+
+		<footer>
+			<div class="container">
+				<a href="{{ siteUrl }}">
+					<img src="{{ company.lightLogo.one().url }}" />
+				</a>
+
+				<nav>
+					<ul>
+						<li><a href='{{ url('company/overview') }}'>Company</a></li>
+						<li><a href='{{ url('technology/overview') }}'>Technology</a></li>
+						<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
+						<li><a href='{{ url('resources') }}'>Resources</a></li>
+						<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
+						<li><a href='{{ url('contact') }}'>Contact</a></li>
+					</ul>
+					<div class="copy">
+						<p>&copy; Copyright {{ now | date('Y') }} Von Baer Wolff. All Rights Reserved.</p>
+					</div>
+				</nav>
 			</div>
-		</div>
-		<div class='container-fluid'>
-			<p>&copy; Copyright {{ now | date('Y') }} Von Baer Wolff. All Rights Reserved.</p>
-		</div>
-	</footer>
+		</footer>
 
+		<script src="//code.jquery.com/jquery-latest.js"></script>
+		<script src="//cdn.rawgit.com/noelboss/featherlight/1.7.9/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
-</body>
+		<script>
+			$(function() {
+				$('a.fl').featherlight({
+					targetAttr: 'href'
+				});
+
+				function viewTeam(el, team) {
+					$('.team-container.active').removeClass('active');
+					$('#'+team).fadeIn(function() {
+						this.addClass('active');
+					});
+				}
+			});
+		</script>
+	</body>
 </html>

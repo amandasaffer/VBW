@@ -1,38 +1,51 @@
 {% extends "_layout" %}
 
 {% block content %}
-{% set entry = craft.entries.section('news').one() %}
+{% set entry = craft.entries.section('home').first() %}
 {% set newsEntries = craft.entries.section('news').type('news').all() %}
 {% set eventEntries = craft.entries.section('news').type('event').all() %}
 
-<div class='news-header container'>
-	<p>Latest</p>
-	<p>News and Events</p>
+<div class="page-title --news" style="background-image: url('{{ entry.heroBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
+    <div class="container">
+        <div class="row">
+        	<div class="col-md-8">
+	            <h2 class="subheadline">Latest</h2>
+	            <h1 class="headline">News &amp; Events</h1>
+	        </div>
+        </div>
+    </div>
 </div>
-<div class='container news-and-events'>
-	<div class='row'>
-		<div class='col-md-6'>
-			{% for block in newsEntries %}
-				<div class='news-block'>
-					<p>{{ block.newsPublishDate|datetime('short') }}</p>
-					<p>{{ block.title }}</p>
-					<p>{{ block.newsBody }}</p>
+
+<div id="news">
+	<div class="container">
+		<div class="row">
+			<div id="feed" class="col-md-6">
+				{% for block in newsEntries %}
+					<div class="feed-block">
+						<span class="date">{{ block.newsPublishDate|date("M d, Y") }}</span>
+						<h2 class="title">{{ block.title|striptags }}</h2>
+						{% set excerpt = block.newsBody|striptags %}
+						<p>{{ excerpt | length > 235 ? excerpt| slice(0, 235) ~ '...' : excerpt }}</p>
+					</div>
+				{% endfor %}
+
+				<button class="col-centered">Next Page</button>
+			</div>
+			<div class="col-md-6" style="height: 100vh;">
+				<div id="events">
+					<p>Upcoming Events</p>
+					{% for block in eventEntries %}
+						<div class="event-block">
+							<p style="margin-bottom: 30px;">June 24, 2017<br />
+							{{ block.title|striptags }}<br />
+							{{ block.eventLocation|striptags }}<br />
+							{{ block.eventDescription|striptags }}</p>
+						</div>
+					{% endfor %}
 				</div>
-			{% endfor %}
-		</div>
-		<div class='event-list col-md-6'>
-			<p>Upcoming Events</p>
-			{% for block in eventEntries %}
-				<div class='event-block'>
-					<p>Matrix Block Date(s)</p>
-					<p>{{ block.title }}</p>
-					<p>{{ block.eventLocation }}</p>
-					<p>{{ block.eventDescription }}</p>
-				</div>
-			{% endfor %}
+			</div>
 		</div>
 	</div>
-	<button class='col-centered'>Next</button>
 </div>
 {% endblock %}
 

@@ -2,84 +2,104 @@
 
 {% block content %}
 {% set entry = craft.entries.section('contact').one() %}
-
-<div class='contact-header container'>
-	<div class='row'>
-		<p>{{ entry.headerHeadline }}</p>
-		<p>{{ entry.headerSubheadline }}</p>
-	</div>
+<div class="contact-container">
+<div class="page-title --contact" style="background-image: url('{{ entry.headerBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
+    <div class="container">
+        <div class="row">
+        	<div class="col-md-7">
+	            <h2 class="subheadline">{{ entry.headerHeadline|striptags }}</h2>
+	            <h1 class="headline">{{ entry.headerSubheadline|striptags }}</h1>
+	        </div>
+        </div>
+    </div>
 </div>
-<div class='container'>
-	<div class='row'>
-		<div class='col-md-6'>
-			<div class='row'>
-				<p>Von Baer Wolff is creating a hepatocyte supply pipeline for science and industry. Reach out if you're interested in obtaining hepatocytes, curious about ways we might partner, or want to learn about investment opportunities.</p>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-7 contact-body">
+				<p>{{ entry.formIntro }}</p>
+
+				{% macro errorList(errors) %}
+				    {% if errors %}
+				        <ul class="errors">
+				            {% for error in errors %}
+				                <li>{{ error }}</li>
+				            {% endfor %}
+				        </ul>
+				    {% endif %}
+				{% endmacro %}
+
+				{% from _self import errorList %}
+				<form method="post" action="" id="contact" accept-charset="UTF-8">
+				    {{ csrfInput() }}
+				    <input type="hidden" name="action" value="contact-form/send">
+				    <input type="hidden" name="_address" value="">
+
+				    <div class="row">
+				    	<div class="col-md-12">
+				    		<label for="from-name">Full Name*</label>
+				    		<input id="from-name" class="form-control" type="text" name="fromName" value="{{ message.fromName ?? '' }}">
+				    		{{ message is defined and message ? errorList(message.getErrors('fromName')) }}
+				    	</div>
+				    </div>
+
+				    <div class="row">
+				    	<div class="col-md-6">
+				    		<label for="from-email">Email Address*</label>
+				    		<input id="from-email" class="form-control" type="email" name="fromEmail" value="{{ message.fromEmail ?? '' }}">
+				    		{{ message is defined and message ? errorList(message.getErrors('fromEmail')) }}
+				    	</div>
+				    	<div class="col-md-6">
+				    		<label for="organization">Organization</label>
+				    		<input id="organization" class="form-control" type="text" name="message[Organization]" value="">
+				    		{{ message is defined and message ? errorList(message.getErrors('message[Organization]')) }}
+				    	</div>
+				    </div>
+
+				    <div class="row">
+				    	<div class="col-md-12 --message">
+				    		<label for="message">Message*</label>
+				    		<textarea rows="10" class="form-control" cols="40" id="message" name="message">{{ message.message ?? '' }}</textarea>
+				    		{{ message is defined and message ? errorList(message.getErrors('message')) }}
+				    	</div>
+				    </div>
+
+				    <input type="submit" class="btn btn-primary" value="Send Message">
+				</form>
 			</div>
-			<div class='row'>
-				<div class='col-md-6'>
-					<form>
-						First Name
-						<input type='text'>
-					</form>
-				</div>
-				<div class='col-md-6'>
-					<form>
-						Last Name
-						<input type='text'>
-					</form>
-				</div>
-			</div>
-			<div class='row'>
-				<div class='col-md-6'>
-					<form>
-						Email Address
-						<input type='text'>
-					</form>
-				</div>
-				<div class='col-md-6'>
-					<form>
-						Organization
-						<input type='text'>
-					</form>
-				</div>
-			</div>
-			<div class='row'>
-				<div class='col-md-12'>
-					<form>
-						Your Message<br>
-						<textarea></textarea>
-					</form>
-				</div>
-			</div>
-			<div class='row'>
-				<div class='col-md-12'>
-					<button>Send Message</button>
-					<p>Required Field</p>
-				</div>
-			</div>
-		</div>
-		<div class='col-md-6 map-frame'>
-			<img />
-			<p>Locations</p>
-			<div class='row'>
-				{% for block in entry.locations.all() %}
-					<div class='col-md-6'>
-						<p>{{ block.locationTitle }}</p>
-						<p>{{ block.locationAddress }}</p>
-						<a href='{{ block.locationDirectionsLink }}'>Get Directions</a>
+
+			<div class="col-md-5">
+				<div class="contact-info">
+					{% set map = entry.locations.first().mapImage.one() %}
+					<div class="location-image" style="background-image: url('{{ map.url }}'); background-size: cover; background-position: 50% 50%;"></div>
+
+					<div class="info-blocks">
+						<div class="block">
+							<h3 class="subsection">Locations</h3>
+							<div class="row">
+								{% for block in entry.locations.all() %}
+									<div class="col-md-6">
+										<p>
+											<strong>{{ block.locationTitle|striptags }}</strong>
+											{{ block.locationAddress|striptags('<br>') }}
+											<a href="{{ block.locationDirectionsLink }}">Get Directions</a>
+										</p>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+						<div class="block">
+							<h3 class="subsection">Chief Executive</h3>
+							<p><strong>{{ entry.contactName }}</strong>
+								<a href="mailto:{{ entry.contactEmail }}">{{ entry.contactEmail }}</a><br />
+								<a href="tel:{{ entry.contactTelephone }}">{{ entry.contactTelephone }}</a>
+							</p>
+						</div>
 					</div>
-				{% endfor %}
-			</div>
-			<div class='contact-person'>
-				<p>Contact Person</p>
-				<p>{{ entry.contactName }}</p>
-				<p>{{ entry.contactEmail }}</p>
-				<p>{{ entry.contactTelephone }}</p>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 
 
 {% endblock %}

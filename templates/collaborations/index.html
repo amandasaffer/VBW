@@ -2,20 +2,34 @@
 
 {% block content %}
 {% set entry = craft.entries.section('collaborations').one() %}
-<div class='collaborations-header'>
-	<p>{{ entry.headerHeadline }}</p>
-	<p>{{ entry.headerSubheadline }}</p>
+<div class="page-title --collaborations" style="background-image: url('{{ entry.headerBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
+    <div class="container">
+        <div class="col-md-8 col-centered">
+            <h2 class="subheadline">{{ entry.headerHeadline }}</h2>
+            <h1 class="headline">{{ entry.headerSubheadline|striptags|raw }}</h1>
+        </div>
+    </div>
 </div>
-<div class='container collab-list'>
-	{% for block in entry.collaborations.all() %}
-		<div class='row'>
-			<div class='col-md-6 col-centered collab-chunk'>
-				<img src='{{ block.collabCompanyLogo.one().url }}'>
-				<p>{{ block.collabBody }}</p>
-				<button>{{ block.collabButtonText }}</button>
+
+
+<div id="collaborations">
+	<div class="container">
+		{% for block in entry.collaborations.all() %}
+			<div class="row">
+				<div class="col-md-8 col-centered">
+					<div class="collaborator">
+						<div class="logo">
+							<img src="{{ block.collabCompanyLogo.one().url }}" class="">
+						</div>
+						{{ block.collabBody }}
+						<div style="text-align: center;">
+							<a href="{{ block.collabExternalLink }}" target="_blank" rel="noopener" class="btn btn-minimal">{{ block.collabButtonText }}</a>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	{% endfor %}
+		{% endfor %}
+	</div>
 </div>
 
 
