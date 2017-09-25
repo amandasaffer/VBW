@@ -410,7 +410,6 @@ header {
 footer {
 	.container {
 		text-align: center;
-		height: auto;
 	}
 
 	img {
@@ -458,7 +457,7 @@ footer {
 
 	@include at-query($max, $small) {
 		.container {
-			padding: 3rem 15px 0;
+			// min-height: 400px;
 		}
 		nav ul li a {
 			margin-left: 0;
@@ -467,6 +466,16 @@ footer {
 			max-width: 60%;
 			margin: 1rem auto;
 		}
+	}
+
+	@include at-query($max, $medium) {
+		padding-top: 3rem;
+		padding-bottom: 1rem;
+	}
+
+	@include at-query($max, $large) {
+		padding-top: 3rem;
+		padding-bottom: 2rem;
 	}
 
 	@include at-query($min, $medium) {

@@ -254,8 +254,7 @@ header {
 
 /* he */
 footer .container {
-  text-align: center;
-  height: auto; }
+  text-align: center; }
 footer img {
   width: 200px;
   position: relative;
@@ -291,13 +290,19 @@ footer .copy p {
   line-height: 20px;
   margin-top: 0; }
 @media screen and (max-width: 480px) {
-  footer .container {
-    padding: 3rem 15px 0; }
   footer nav ul li a {
     margin-left: 0; }
   footer .copy p {
     max-width: 60%;
     margin: 1rem auto; } }
+@media screen and (max-width: 768px) {
+  footer {
+    padding-top: 3rem;
+    padding-bottom: 1rem; } }
+@media screen and (max-width: 1200px) {
+  footer {
+    padding-top: 3rem;
+    padding-bottom: 2rem; } }
 @media screen and (min-width: 768px) {
   footer nav ul li {
     display: inline-block; }
