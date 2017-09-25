@@ -4,7 +4,7 @@
 
 <div id="hero" class="home --centered" style="background-image: url('{{ entry.heroBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 100%;">
 	<div class="container">
-		<div class="col-md-12 col-lg-8 col-centered">
+		<div class="col-md-12 col-lg-9 col-xl-8 col-centered">
 			<h1>{{ entry.heroHeadline|striptags|raw }}</h1>
 			<a href="{{ url('company/overview') }}" class="btn btn-primary btn-cta">{{ entry.heroButtonText }}</a>
 		</div>

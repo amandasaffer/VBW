@@ -2,8 +2,17 @@
   Dependency-free breakpoint mixin
     - http://blog.grayghostvisuals.com/sass/sass-media-query-mixin/
 ==============================================================================*/
+html, body {
+  box-sizing: border-box; }
+
 body {
   margin: 0px; }
+
+body * {
+  box-sizing: inherit; }
+
+main {
+  background: #fff; }
 
 .no-gutter > [class*='col-'] {
   padding-right: 0;
@@ -136,6 +145,9 @@ header {
     width: 162px;
     position: relative;
     bottom: 2px; }
+  @media screen and (max-width: 1200px) {
+    header nav {
+      display: none; } }
   header nav ul {
     list-style-type: none;
     margin: 0;
@@ -184,12 +196,66 @@ header {
     text-shadow: none; }
     header.--light nav ul li a:hover {
       color: #00040B; }
+  header .toggle-menu {
+    display: none;
+    cursor: pointer;
+    user-select: none;
+    padding: 25px;
+    background: none;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 0; }
+    @media screen and (max-width: 1200px) {
+      header .toggle-menu {
+        display: block; } }
+    header .toggle-menu:hover, header .toggle-menu:focus {
+      outline: 0; }
+      header .toggle-menu:hover .burger-lines, header .toggle-menu:focus .burger-lines {
+        background-color: #fff; }
+        header .toggle-menu:hover .burger-lines:before, header .toggle-menu:hover .burger-lines:after, header .toggle-menu:focus .burger-lines:before, header .toggle-menu:focus .burger-lines:after {
+          background-color: #fff; }
+    header .toggle-menu.active .burger-lines {
+      background: transparent; }
+      header .toggle-menu.active .burger-lines:before, header .toggle-menu.active .burger-lines:after {
+        transition: top 300ms cubic-bezier(0.165, 0.84, 0.44, 1), transform 300ms 300ms cubic-bezier(0.165, 0.84, 0.44, 1);
+        top: 0;
+        width: 25px; }
+      header .toggle-menu.active .burger-lines:before {
+        transform: rotate3d(0, 0, 1, 45deg) scale(1.1); }
+      header .toggle-menu.active .burger-lines:after {
+        transform: rotate3d(0, 0, 1, -45deg) scale(1.1); }
+  header .burger-lines {
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    transition: all 300ms ease;
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    position: relative;
+    top: -2px;
+    border-radius: 1px; }
+    header .burger-lines:before, header .burger-lines:after {
+      content: '';
+      display: inline-block;
+      width: 25px;
+      height: 3px;
+      background-color: #fff;
+      position: absolute;
+      border-radius: 1px;
+      left: 0;
+      transform-origin: 50% 50%;
+      transition: top 300ms 300ms cubic-bezier(0.165, 0.84, 0.44, 1), transform 300ms cubic-bezier(0.165, 0.84, 0.44, 1), background-color 300ms cubic-bezier(0.165, 0.84, 0.44, 1); }
+    header .burger-lines:before {
+      top: 8px; }
+    header .burger-lines:after {
+      top: -8px; }
 
-/* Footer */
+/* he */
 footer .container {
   text-align: center;
-  height: auto;
-  padding: 3rem 15px 0; }
+  height: auto; }
 footer img {
   width: 200px;
   position: relative;
@@ -225,6 +291,8 @@ footer .copy p {
   line-height: 20px;
   margin-top: 0; }
 @media screen and (max-width: 480px) {
+  footer .container {
+    padding: 3rem 15px 0; }
   footer nav ul li a {
     margin-left: 0; }
   footer .copy p {
@@ -1385,5 +1453,93 @@ ul.errors {
 .featherlight-content {
   margin-left: 27% !important;
   margin-right: 27% !important; }
+
+/* Animating mobile menu */
+/* Show the menu when animating or visible */
+.animating .mobile-menu, .menu-visible .mobile-menu {
+  display: block; }
+
+/***
+ * If the animating class is present then apply
+ * the CSS transition to .page-container over 250ms.
+ */
+.animating .page-container {
+  transition: transform .25s ease-in-out;
+  -webkit-transition: -webkit-transform .25s ease-in-out; }
+
+/***
+ * If the left class is present then transform
+ * the .page-container element 320px to the left.
+ */
+.animating.left .page-container {
+  transform: translate3d(-320px, 0, 0);
+  -webkit-transform: translate3d(-320px, 0, 0); }
+
+/***
+ * If the right class is present then transform
+ * the .page-container element 320px to the right.
+ */
+.animating.right .page-container {
+  transform: translate3d(320px, 0, 0);
+  -webkit-transform: translate3d(320px, 0, 0); }
+
+/***
+ * If the menu-visible class is present then
+ * shift the .page-container 320px from the right edge
+ * via position: absolute to keep it in the
+ * open position. When .animating, .left and
+ * .right classes are not present the CSS
+ * transform does not apply to .page-container.
+ */
+.menu-visible .page-container {
+  right: 320px; }
+
+.clearfix:before,
+.clearfix:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.clearfix:after {
+  clear: both; }
+
+.page-container {
+  position: relative;
+  z-index: 2;
+  transform: translate3d(0, 0, 0);
+  /* X, Y, Z */
+  -webkit-transform: translate3d(0, 0, 0); }
+
+.page-container, .mobile-menu {
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  overflow: hidden; }
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 320px;
+  z-index: 1;
+  /* Make sure the z-index is lower than the .page-container */ }
+  .mobile-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    background: #030D1E;
+    height: 100vh; }
+    .mobile-menu ul li {
+      padding: 0;
+      margin: 0; }
+    .mobile-menu ul li a {
+      padding: 25px;
+      display: block;
+      color: #fff;
+      text-decoration: none; }
+    .mobile-menu ul li.active {
+      background: black;
+      color: #d9dee2; }
 
 /*# sourceMappingURL=main.css.map */
