@@ -2057,8 +2057,18 @@ ul.errors {
 }
 
 .featherlight-content {
-	margin-left: 27% !important;
-	margin-right: 27% !important;
+	margin-left: 0% !important;
+	margin-right: 0% !important;
+
+	@include at-query($min, $medium) {
+		margin-left: 15% !important;
+		margin-right: 15% !important;
+	}
+
+	@include at-query($min, $large) {
+		margin-left: 27% !important;
+		margin-right: 27% !important;
+	}
 }
 
 /* Animating mobile menu */

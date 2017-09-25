@@ -1456,8 +1456,16 @@ ul.errors {
   display: none; }
 
 .featherlight-content {
-  margin-left: 27% !important;
-  margin-right: 27% !important; }
+  margin-left: 0% !important;
+  margin-right: 0% !important; }
+  @media screen and (min-width: 768px) {
+    .featherlight-content {
+      margin-left: 15% !important;
+      margin-right: 15% !important; } }
+  @media screen and (min-width: 1200px) {
+    .featherlight-content {
+      margin-left: 27% !important;
+      margin-right: 27% !important; } }
 
 /* Animating mobile menu */
 /* Show the menu when animating or visible */
