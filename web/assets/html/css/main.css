@@ -196,6 +196,28 @@ header {
     text-shadow: none; }
     header.--light nav ul li a:hover {
       color: #00040B; }
+  header.--light .burger-lines {
+    background-color: #242D2D; }
+    header.--light .burger-lines:before, header.--light .burger-lines:after {
+      background-color: #242D2D; }
+  header.--light .toggle-menu:hover {
+    outline: 0; }
+    header.--light .toggle-menu:hover .burger-lines {
+      background-color: #242D2D; }
+      header.--light .toggle-menu:hover .burger-lines:before, header.--light .toggle-menu:hover .burger-lines:after {
+        background-color: #242D2D; }
+  header.--light .toggle-menu:focus {
+    outline: 0; }
+    header.--light .toggle-menu:focus .burger-lines {
+      background-color: #242D2D; }
+      header.--light .toggle-menu:focus .burger-lines:before, header.--light .toggle-menu:focus .burger-lines:after {
+        background-color: #242D2D; }
+  header.--light .toggle-menu.active:focus {
+    outline: 0; }
+    header.--light .toggle-menu.active:focus .burger-lines {
+      background-color: #fff; }
+      header.--light .toggle-menu.active:focus .burger-lines:before, header.--light .toggle-menu.active:focus .burger-lines:after {
+        background-color: #242D2D; }
   header .toggle-menu {
     display: none;
     cursor: pointer;
@@ -654,15 +676,18 @@ p {
 
 #companyIntro {
   padding-top: 8rem;
-  padding-bottom: 20rem;
-  background-position: 50% 104%;
-  background-size: 100%;
+  padding-bottom: 3rem;
   background-repeat: no-repeat; }
   #companyIntro .body {
     margin-top: 2rem;
     margin-bottom: 4rem; }
     #companyIntro .body h3.subsection {
       margin-bottom: 2rem; }
+  @media screen and (max-width: 480px) {
+    #companyIntro {
+      padding-bottom: 20rem;
+      background-position: 50% 104%;
+      background-size: 100%; } }
   @media screen and (min-width: 480px) {
     #companyIntro {
       background-position: 115% 115%; } }
@@ -679,8 +704,39 @@ p {
   @media screen and (min-width: 1400px) {
     #companyIntro {
       padding-top: 8rem;
-      background-position: 99% 115%;
-      background-size: 43%; } }
+      background-position: 99% 155%;
+      background-size: 40%; } }
+  @media screen and (min-width: 1400px) {
+    #companyIntro {
+      background-position: 94% 110%; } }
+  @media screen and (min-width: 1600px) {
+    #companyIntro {
+      background-position: 89% 155%;
+      background-size: 38%; } }
+  @media screen and (min-width: 1700px) {
+    #companyIntro {
+      background-position: 85% 165%;
+      background-size: 36%; } }
+  @media screen and (min-width: 1800px) {
+    #companyIntro {
+      background-position: 80% 175%;
+      background-size: 34%; } }
+  @media screen and (min-width: 1900px) {
+    #companyIntro {
+      background-position: 76% 185%;
+      background-size: 32%; } }
+  @media screen and (min-width: 2100px) {
+    #companyIntro {
+      background-position: 73% 195%;
+      background-size: 30%; } }
+  @media screen and (min-width: 2200px) {
+    #companyIntro {
+      background-position: 69% 205%;
+      background-size: 28%; } }
+  @media screen and (min-width: 2350px) {
+    #companyIntro {
+      background-position: 67% 215%;
+      background-size: 26%; } }
 
 /*
  * Company - ABOUT US

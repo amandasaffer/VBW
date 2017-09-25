@@ -323,6 +323,50 @@ header {
 				color: #00040B;
 			}
 		}
+
+		.burger-lines {
+			background-color: $text;
+			&:before,
+			&:after {
+				background-color: $text;
+			}
+		}
+
+		.toggle-menu {
+			&:hover {
+		    outline: 0;
+		        .burger-lines {
+		            background-color: $text;
+		            &:before,
+		            &:after {
+		                background-color: $text;
+		            }
+		        }
+		    }
+		    &:focus {
+		    	outline: 0;
+		        .burger-lines {
+		            background-color: $text;
+		            &:before,
+		            &:after {
+		                background-color: $text;
+		            }
+		        }
+		    }
+
+		    &.active {
+		    	&:focus {
+					outline: 0;
+			        .burger-lines {
+			            background-color: #fff;
+			            &:before,
+			            &:after {
+			                background-color: $text;
+			            }
+			        }
+		    	}
+		    }
+		}
 	}
 
 	.toggle-menu {
@@ -404,8 +448,9 @@ header {
 	    }
 
 	}
-
 }
+
+
 /* he */
 footer {
 	.container {
@@ -936,9 +981,7 @@ p {
 
 #companyIntro {
 	padding-top: 8rem;
-	padding-bottom: 20rem;
-	background-position: 50% 104%;
-	background-size: 100%;
+	padding-bottom: 3rem;
 	background-repeat: no-repeat;
 
 	.body {
@@ -948,6 +991,12 @@ p {
 		h3.subsection {
 			margin-bottom: 2rem;
 		}
+	}
+
+	@include at-query($max, $small) {
+		padding-bottom: 20rem;
+		background-position: 50% 104%;
+		background-size: 100%;
 	}
 
 	@include at-query($min, $small) {
@@ -966,8 +1015,39 @@ p {
 	}
 	@include at-query($min, $xlarge) {
 		padding-top: 8rem;
-		background-position: 99% 115%;
-		background-size: 43%;
+		background-position: 99% 155%;
+		background-size: 40%;
+	}
+	@include at-query($min, 1400px) {
+		background-position: 94% 110%;
+	}
+	@include at-query($min, 1600px) {
+		background-position: 89% 155%;
+		background-size: 38%;
+	}
+	@include at-query($min, 1700px) {
+		background-position: 85% 165%;
+		background-size: 36%;
+	}
+	@include at-query($min, 1800px) {
+		background-position: 80% 175%;
+		background-size: 34%;
+	}
+	@include at-query($min, 1900px) {
+		background-position: 76% 185%;
+		background-size: 32%;
+	}
+	@include at-query($min, 2100px) {
+		background-position: 73% 195%;
+		background-size: 30%;
+	}
+	@include at-query($min, 2200px) {
+		background-position: 69% 205%;
+		background-size: 28%;
+	}
+	@include at-query($min, 2350px) {
+		background-position: 67% 215%;
+		background-size: 26%;
 	}
 }
 
