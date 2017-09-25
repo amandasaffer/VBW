@@ -101,7 +101,7 @@
         <h3 class="team-section">Science Advisors</h3>
         {% for person in entry.scienceAdvisors.all() %}
             <div class="row team-member">
-                <div class="col-md-3 push-md-1 col-lg-2 push-lg-2">
+                <div class="sm-photo-centered col-md-3 push-md-1 col-lg-2 push-lg-2">
                     <img src="{{ person.image.one().getUrl(thumb) }}" class="team" />
                 </div>
                 <div class="col-md-7 push-md-1 col-lg-6 push-lg-2">
