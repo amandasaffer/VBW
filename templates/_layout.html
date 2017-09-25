@@ -33,13 +33,27 @@
 	<body>
 		<div class="mobile-menu">
 		    <ul>
-			    <li><a href='{{ url('company/overview') }}'>Company Overview</a></li>
-			    <li><a href='{{ url('company/about') }}'>About Us</a></li>
+			    {% if showHide.showPages.contains('companyOverview') %}
+				<li><a href='{{ url('company/overview') }}'>Company Overview</a></li>
+				{% endif %}
+				{% if showHide.showPages.contains('companyAboutUs') %}
+				<li><a href='{{ url('company/about') }}'>About Us</a></li>
+				{% endif %}
+				{% if showHide.showPages.contains('technologyOverview') %}
 				<li><a href='{{ url('technology/overview') }}'>Technology</a></li>
+				{% endif %}
+				{% if showHide.showPages.contains('collaborations') %}
 				<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
-				<li><a href='{{ url('resources/publications') }}'>Publications</a></li>
+				{% endif %}
+				{% if showHide.showPages.contains('resourcesPublications') %}
+				<li><a href='{{ url('resources/publications') }}'>Resources</a></li>
+				{% endif %}
+				{% if showHide.showPages.contains('newsEvents') %}
 				<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
+				{% endif %}
+				{% if showHide.showPages.contains('contactUs') %}
 				<li><a href='{{ url('contact') }}'>Contact</a></li>
+				{% endif %}
 		    </ul>
 		</div>
 
@@ -61,12 +75,22 @@
 						</a>
 
 					  	<div class="dropdown-menu" aria-labelledby="companyDropdown">
-					    	<a class="dropdown-item" href='{{ url('company/overview') }}'>Overview</a>
-					    	<a class="dropdown-item" href='{{ url('company/about') }}'>About Us</a>
+					    	{% if showHide.showPages.contains('companyOverview') %}
+					    		<a class="dropdown-item" href='{{ url('company/overview') }}'>Overview</a>
+					    	{% endif %}
+					    	{% if showHide.showPages.contains('companyAboutUs') %}
+					    		<a class="dropdown-item" href='{{ url('company/about') }}'>About Us</a>
+					    	{% endif %}
 					  	</div>
 					</li>
+					{% if showHide.showPages.contains('technologyOverview') %}
 					<li><a href='{{ url('technology/overview') }}'>Technology</a></li>
+					{% endif %}
+					{% if showHide.showPages.contains('collaborations') %}
 					<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
+					{% endif %}
+
+					{% if showHide.showPages.contains('resourcesPublications') %}
 					<li class="dropdown">
 						<a class="dropdown-toggle" href="#" id="resourcesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						    Resources
@@ -76,8 +100,13 @@
 					    	<a class="dropdown-item" href='{{ url('resources/publications') }}'>Publications</a>
 					  	</div>
 					</li>
+					{% endif %}
+					{% if showHide.showPages.contains('newsEvents') %}
 					<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
+					{% endif %}
+					{% if showHide.showPages.contains('contactUs') %}
 					<li><a href='{{ url('contact') }}'>Contact</a></li>
+					{% endif %}
 				</ul>
 			</nav>
 
@@ -99,12 +128,27 @@
 
 				<nav>
 					<ul>
+						{% if showHide.showPages.contains('companyOverview') %}
 						<li><a href='{{ url('company/overview') }}'>Company</a></li>
+						{% endif %}
+						{% if showHide.showPages.contains('companyAboutUs') %}
+						<li><a href='{{ url('company/about') }}'>About Us</a></li>
+						{% endif %}
+						{% if showHide.showPages.contains('technologyOverview') %}
 						<li><a href='{{ url('technology/overview') }}'>Technology</a></li>
+						{% endif %}
+						{% if showHide.showPages.contains('collaborations') %}
 						<li><a href='{{ url('collaborations') }}'>Collaborations</a></li>
+						{% endif %}
+						{% if showHide.showPages.contains('resourcesPublications') %}
 						<li><a href='{{ url('resources/publications') }}'>Resources</a></li>
+						{% endif %}
+						{% if showHide.showPages.contains('newsEvents') %}
 						<li><a href='{{ url('news') }}'>News &amp; Events</a></li>
+						{% endif %}
+						{% if showHide.showPages.contains('contactUs') %}
 						<li><a href='{{ url('contact') }}'>Contact</a></li>
+						{% endif %}
 					</ul>
 					<div class="copy">
 						<p>&copy; Copyright {{ now | date('Y') }} Von Baer Wolff. All Rights Reserved.</p>
