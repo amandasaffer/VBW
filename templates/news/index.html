@@ -2,13 +2,13 @@
 
 {% block content %}
 {% set entry = craft.entries.section('home').first() %}
-{% set newsEntries = craft.entries.section('news').type('news').all() %}
-{% set eventEntries = craft.entries.section('news').type('event').all() %}
+{% paginate craft.entries.section('news').type('news').limit(5) as newsEntries %}
+{% paginate craft.entries.section('news').type('event').limit(5) as eventEntries %}
 
 <div class="page-title --news" style="background-image: url('{{ entry.heroBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
     <div class="container">
         <div class="row">
-        	<div class="col-md-8">
+        	<div class="col-md-8 col-lg-8">
 	            <h2 class="subheadline">Latest</h2>
 	            <h1 class="headline">News &amp; Events</h1>
 	        </div>
@@ -19,28 +19,72 @@
 <div id="news">
 	<div class="container">
 		<div class="row">
-			<div id="feed" class="col-md-6">
+			<div id="feed" class="col-md-12 col-lg-6">
 				{% for block in newsEntries %}
 					<div class="feed-block">
 						<span class="date">{{ block.newsPublishDate|date("M d, Y") }}</span>
-						<h2 class="title">{{ block.title|striptags }}</h2>
+						<h2 class="title"><a href="{{ block.url }}">{{ block.title|striptags }}</a></h2>
 						{% set excerpt = block.newsBody|striptags %}
 						<p>{{ excerpt | length > 235 ? excerpt| slice(0, 235) ~ '...' : excerpt }}</p>
 					</div>
 				{% endfor %}
 
-				<button class="col-centered">Next Page</button>
+				<div class="pagination">
+					{% if paginate.prevUrl %}
+						<a href="{{ paginate.prevUrl }}" class="btn btn-sm btn-minimal">Prev</a>
+					{% endif %}
+					{% if paginate.nextUrl %}
+						<a href="{{ paginate.nextUrl }}" class="btn btn-sm btn-minimal">Next</a>
+					{% endif %}
+				</div>
 			</div>
-			<div class="col-md-6" style="height: 100vh;">
+
+			<div class="col-md-12 col-lg-6 event-sidebar">
 				<div id="events">
-					<p>Upcoming Events</p>
 					{% for block in eventEntries %}
-						<div class="event-block">
-							<p style="margin-bottom: 30px;">June 24, 2017<br />
-							{{ block.title|striptags }}<br />
-							{{ block.eventLocation|striptags }}<br />
-							{{ block.eventDescription|striptags }}</p>
-						</div>
+						{% set date = block.eventDate.one() %}
+						{% if loop.first %}
+							{% if block.eventImage|length %}
+							<div id="next" style="background-image: url('{{ block.eventImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
+							{% else %}
+							<div id="next">
+							{% endif %}
+								<h4>Upcoming Events</h4>
+
+								<a href="{{ block.externalLink }}" class="event-block">
+									<div class="info">
+										<h2 class="title">{{ block.title|striptags }}</h2>
+										<span class="loc">{{ block.eventLocation|striptags }}</span>
+									</div>
+									<div class="date">
+										{% if date.eventStartDate %}
+											<span class="month">{{ date.eventStartDate|date("M") }}</span>
+											<span class="day">{{ date.eventStartDate|date("d") }}</span>
+										{% else %}
+											<span class="month">{{ date.eventDate|date("M") }}</span>
+											<span class="day">{{ date.eventDate|date("d") }}</span>
+										{% endif %}
+									</div>
+								</a>
+							</div>
+						{% endif %}
+
+						<a class="event-block" href="{{ block.externalLink }}">
+							<div class="date">
+								{% if date.eventStartDate %}
+									<span class="month">{{ date.eventStartDate|date("M") }}</span>
+									<span class="day">{{ date.eventStartDate|date("d") }}</span>
+								{% else %}
+									<span class="month">{{ date.eventDate|date("M") }}</span>
+									<span class="day">{{ date.eventDate|date("d") }}</span>
+								{% endif %}
+							</div>
+							<div class="info">
+								<h2 class="title">{{ block.title|striptags }}</h2>
+								<span class="loc">{{ block.eventLocation|striptags }}</span>
+							</div>
+							<!-- eventDescription -->
+						</a>
 					{% endfor %}
 				</div>
 			</div>

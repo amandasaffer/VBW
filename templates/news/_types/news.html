@@ -1,0 +1,37 @@
+{% extends "_layout" %}
+
+{% block content %}
+{% set home = craft.entries.section('home').first() %}
+{% paginate craft.entries.section('news').type('event').limit(5) as eventEntries %}
+
+<div class="page-title --news" style="background-image: url('{{ home.heroBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h2 class="subheadline">Latest</h2>
+                <h1 class="headline">News &amp; Events</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="news">
+    <div class="container">
+        <div class="row">
+            <div id="feed" class="col-md-12 col-lg-9 col-centered">
+                <div class="back">
+                    <a href="{{ url('news') }}" class="btn btn-sm btn-minimal"><i class="fa fa-chevron-left"></i> Go Back</a>
+                </div>
+                <div class="feed-block --single">
+                    <span class="date">{{ entry.newsPublishDate|date("M d, Y") }}</span>
+                    <h1 class="title">{{ entry.title|striptags }}</h1>
+                    {{ entry.newsBody }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+

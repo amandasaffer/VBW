@@ -6,7 +6,7 @@
 <div class="page-title --contact" style="background-image: url('{{ entry.headerBackgroundImage.one().url }}'); background-size: cover; background-position: 50% 50%;">
     <div class="container">
         <div class="row">
-        	<div class="col-md-7">
+        	<div class="col-md-10 col-lg-7">
 	            <h2 class="subheadline">{{ entry.headerHeadline|striptags }}</h2>
 	            <h1 class="headline">{{ entry.headerSubheadline|striptags }}</h1>
 	        </div>
@@ -77,22 +77,19 @@
 							<h3 class="subsection">Locations</h3>
 							<div class="row">
 								{% for block in entry.locations.all() %}
-									<div class="col-md-6">
-										<p>
-											<strong>{{ block.locationTitle|striptags }}</strong>
-											{{ block.locationAddress|striptags('<br>') }}
-											<a href="{{ block.locationDirectionsLink }}">Get Directions</a>
-										</p>
+									<div class="col-md-12 col-lg-6">
+										<strong>{{ block.locationTitle }}</strong>
+										{{ block.locationAddress }}
+										<a href="{{ block.locationDirectionsLink }}">Get Directions</a>
 									</div>
 								{% endfor %}
 							</div>
 						</div>
 						<div class="block">
 							<h3 class="subsection">Chief Executive</h3>
-							<p><strong>{{ entry.contactName }}</strong>
-								<a href="mailto:{{ entry.contactEmail }}">{{ entry.contactEmail }}</a><br />
-								<a href="tel:{{ entry.contactTelephone }}">{{ entry.contactTelephone }}</a>
-							</p>
+							<strong>{{ entry.contactName }}</strong><br />
+							<a href="mailto:{{ entry.contactEmail }}">{{ entry.contactEmail }}</a><br />
+							<a href="tel:{{ entry.contactTelephone }}">{{ entry.contactTelephone }}</a>
 						</div>
 					</div>
 				</div>

@@ -6,13 +6,13 @@
 
 {% block content %}
 
-<div id="companyIntro" style="background-image:url('{{ entry.heroImage.one().url }}'); background-position: 99% 115%; background-size: 43%; background-repeat: no-repeat;">
+<div id="companyIntro" style="background-image:url('{{ entry.heroImage.one().url }}');">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 body">
+			<div class="col-md-8 col-lg-6 body">
 				<h3 class="subsection --underline">{{ entry.heroHeadline|striptags }}</h3>
 				<h2 class="primary">{{ entry.heroSubheadline|striptags }}</h2>
-				<p>{{ entry.heroBody }}</p>
+				{{ entry.heroBody }}
 			</div>
 		</div>
 	</div>
@@ -21,14 +21,14 @@
 <div id="company">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col1">
+			<div class="col-md-12 col-lg-6 col1">
 				<div class="box">
 					<h3 class="subsection">{{ entry.supportingCopy.nth(0).supcopSubheadline|striptags }}</h3>
 					<h2 class="primary">{{ entry.supportingCopy.nth(0).supcopHeadline|striptags }}</h2>
 					{{ entry.supportingCopy.nth(0).supcopBody }}
 				</div>
 			</div>
-			<div class="col-md-6 col2">
+			<div class="col-md-12 col-lg-6 col2">
 				<div class="box">
 					<h3 class="subsection">{{ entry.supportingCopy.nth(1).supcopSubheadline|striptags }}</h3>
 					<h2 class="primary">{{ entry.supportingCopy.nth(1).supcopHeadline|striptags }}</h2>
